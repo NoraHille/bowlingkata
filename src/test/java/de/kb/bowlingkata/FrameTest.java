@@ -43,7 +43,7 @@ class FrameTest {
 
     @Test
     void calculateScoreOfStrikeAfterStrikeCreatedByString() {
-        Frame strikeAfterstrike = BowlingGame.createFrameFromString("X", FrameType.STRIKE);
+        Frame strikeAfterstrike = BowlingGameService.createFrameFromString("X", FrameType.STRIKE);
         assertEquals(20,strikeAfterstrike.calculateScore());
     }
 
@@ -55,7 +55,7 @@ class FrameTest {
 
     @Test
     void calculateScoreOfStrikeAfterStrikeAfterStrikeCreatedByString() {
-        Frame strikeAfterstrike = BowlingGame.createFrameFromString("X", FrameType.STRIKE_AFTER_STRIKE);
+        Frame strikeAfterstrike = BowlingGameService.createFrameFromString("X", FrameType.STRIKE_AFTER_STRIKE);
         assertEquals(30,strikeAfterstrike.calculateScore());
     }
 
@@ -87,37 +87,37 @@ class FrameTest {
 
     @Test
     void calculateScoreOfSpareAndNormalThrow() {
-        Frame spareAndNormal = BowlingGame.createFrameFromString("2/4");
+        Frame spareAndNormal = BowlingGameService.createFrameFromString("2/4");
         assertEquals(FrameType.SPARE, spareAndNormal.getFrameType());
         assertEquals(14,spareAndNormal.calculateScore());
     }
     @Test
     void calculateScoreOfSpareAndStrike() {
-        Frame spareAndNormal = BowlingGame.createFrameFromString("2/X");
+        Frame spareAndNormal = BowlingGameService.createFrameFromString("2/X");
         assertEquals(FrameType.SPARE, spareAndNormal.getFrameType());
         assertEquals(20,spareAndNormal.calculateScore());
     }
     @Test
     void calculateScoreOfStrikeAndStrikeAndStrike() {
-        Frame spareAndNormal = BowlingGame.createFrameFromString("XXX");
+        Frame spareAndNormal = BowlingGameService.createFrameFromString("XXX");
         assertEquals(FrameType.STRIKE, spareAndNormal.getFrameType());
         assertEquals(30,spareAndNormal.calculateScore());
     }
     @Test
     void calculateScoreOfStrikeAndStrikeAndStrikeAfterStrike() {
-        Frame spareAndNormal = BowlingGame.createFrameFromString("XXX", FrameType.STRIKE);
+        Frame spareAndNormal = BowlingGameService.createFrameFromString("XXX", FrameType.STRIKE);
         assertEquals(FrameType.STRIKE_AFTER_STRIKE, spareAndNormal.getFrameType());
         assertEquals(50,spareAndNormal.calculateScore());
     }
     @Test
     void calculateScoreOfStrikeAndStrikeAndStrikeAfterStrikeAfterStrike() {
-        Frame spareAndNormal = BowlingGame.createFrameFromString("XXX", FrameType.STRIKE_AFTER_STRIKE);
+        Frame spareAndNormal = BowlingGameService.createFrameFromString("XXX", FrameType.STRIKE_AFTER_STRIKE);
         assertEquals(FrameType.STRIKE_AFTER_STRIKE, spareAndNormal.getFrameType());
         assertEquals(60,spareAndNormal.calculateScore());
     }
     @Test
     void calculateScoreOfStrikeAndSpareAfterStrikeAfterStrike() {
-        Frame spareAndNormal = BowlingGame.createFrameFromString("X3/", FrameType.STRIKE_AFTER_STRIKE);
+        Frame spareAndNormal = BowlingGameService.createFrameFromString("X3/", FrameType.STRIKE_AFTER_STRIKE);
         assertEquals(FrameType.STRIKE_AFTER_STRIKE, spareAndNormal.getFrameType());
         assertEquals(43,spareAndNormal.calculateScore());
     }

@@ -1,27 +1,32 @@
 package de.kb.bowlingkata;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class BowlingGame {
+@Service
+public class BowlingGameService {
 
-    List<Frame> frames;
 
 
-    public BowlingGame(String individualFramesAsString) {
-        frames = new ArrayList<>();
+    public BowlingGameService() {
+    }
+
+    public List<Frame> initialize(String individualFramesAsString) {
+        List<Frame> frames = new ArrayList<>();
         String[] framesArrayDivided = individualFramesAsString.split(" ");
 
-            String[] individualFramesAsArray = new String[10];
-            for (int i = 0; i <framesArrayDivided.length ; i++) {
-                if(i<10){
-                    individualFramesAsArray[i] = framesArrayDivided[i];
-                }
-                else{
-                    individualFramesAsArray[9]+=framesArrayDivided[i];
-
-                }
+        String[] individualFramesAsArray = new String[10];
+        for (int i = 0; i <framesArrayDivided.length ; i++) {
+            if(i<10){
+                individualFramesAsArray[i] = framesArrayDivided[i];
             }
+            else{
+                individualFramesAsArray[9]+=framesArrayDivided[i];
+
+            }
+        }
 
         for (int i = 0; i < individualFramesAsArray.length; i++) {
             if (i==0) {
@@ -34,9 +39,11 @@ public class BowlingGame {
 
 
         }
+        return frames;
     }
 
-    public int calculateScore() {
+    public int calculateScore(String individualFramesAsString) {
+        List<Frame> frames = initialize(individualFramesAsString);
         int score = 0;
         for (Frame frame : frames
         ) {

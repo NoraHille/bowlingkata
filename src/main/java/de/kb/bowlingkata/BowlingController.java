@@ -1,5 +1,6 @@
 package de.kb.bowlingkata;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,7 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class BowlingController {
+    private final BowlingGameService bowlingGameService;
 
+    @Autowired
+    public BowlingController(BowlingGameService bowlingGameService) {
+        this.bowlingGameService = bowlingGameService;
+    }
 
     @GetMapping("/test")
     String testMethod() {
@@ -16,9 +22,7 @@ public class BowlingController {
 
     @PostMapping("/bowling")
     ScoreData testMethod(@RequestBody BowlingData bowlingInput) {
-
-        BowlingGame game = new BowlingGame(bowlingInput.bowlingString);
-        return new ScoreData(game.calculateScore());
+        return new ScoreData(bowlingGameService.calculateScore(bowlingInput.bowlingString));
 
     }
 }
